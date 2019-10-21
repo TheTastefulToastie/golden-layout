@@ -43,12 +43,13 @@ window.addEventListener('load', () => {
     //   console.log('intercepted event, e:', e.target)
     // });
 
-    // 
+    //
     // set layout type
-    // 
-    var layout = 'standard'
+    //
+    // var layout = 'standard'
+    var layout = 'test-whitespace'
 
-    // 
+    //
     // init
     //
     var config
@@ -62,6 +63,9 @@ window.addEventListener('load', () => {
       case 'tab-dropdown':
         config = createTabDropdownConfig()
         break
+      case 'test-whitespace':
+        config = createWhitespaceConfig()
+        break
       default:
         config = createStandardConfig()
         break
@@ -73,6 +77,55 @@ window.addEventListener('load', () => {
 
     myLayout.init()
 
+
+    function createWhitespaceConfig() {
+        const row = {
+            type: 'row',
+            content: [{
+                type: 'component',
+                title: 'Golden',
+                header: {
+                    show: 'top'
+                },
+                isClosable: false,
+                componentName: 'html',
+                width: 30,
+                componentState: { bg: 'golden_layout_spiral.png' }
+            },
+            {
+                type: 'whitespace'
+            },
+            {
+                title: 'Layout',
+                header: { show: 'top', popout: false },
+                type: 'component',
+                componentName: 'html',
+                componentState: { bg: 'golden_layout_text.png' }
+            }
+          ]
+        };
+        return {
+            content: [{
+                type: 'column',
+                content: [
+                    row,
+                    {
+                        type: 'stack',
+                        title: 'test',
+                        header: {
+                            show: 'top'
+                        },
+                        content: [{
+                            title: 'Layout',
+                            header: { show: 'top', popout: false },
+                            type: 'component',
+                            componentName: 'html',
+                        }]
+                    }
+                ]
+            }]
+        }
+    }
 
     function createMiniConfig(){
         return {
@@ -211,6 +264,7 @@ window.addEventListener('load', () => {
         ]
       }
     }
+
     function createResponsiveConfig() {
       return {
         settings: {

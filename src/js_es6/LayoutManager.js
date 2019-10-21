@@ -6,6 +6,7 @@ import EventHub from './utils/EventHub'
 import Root from './items/Root'
 import RowOrColumn from './items/RowOrColumn'
 import Stack from './items/Stack'
+import Whitespace from './items/Whitespace'
 import Component from './items/Component'
 import AbstractContentItem from './items/AbstractContentItem'
 
@@ -49,7 +50,7 @@ export default class LayoutManager extends EventEmitter {
             errorMsg += 'your paths when using RequireJS/AMD';
             throw new Error(errorMsg);
         }
-        
+
         super();
 
         this.isInitialised = false;
@@ -90,6 +91,7 @@ export default class LayoutManager extends EventEmitter {
             'column': fnBind(RowOrColumn, this, [true]),
             'row': fnBind(RowOrColumn, this, [false]),
             'stack': Stack,
+            'whitespace': Whitespace,
             'component': Component
         };
     }
@@ -428,7 +430,7 @@ export default class LayoutManager extends EventEmitter {
      * @param    {[String]} parentId the id of the element this item will be appended to
      *                             when popIn is called
      * @param    {[Number]} indexInParent The position of this item within its parent element
-     
+
      * @returns {BrowserPopout}
      */
     createPopout(configOrContentItem, dimensions, parentId, indexInParent) {
